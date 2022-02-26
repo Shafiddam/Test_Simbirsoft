@@ -17,7 +17,8 @@ class LoginPageLocators():
 class MailPageLocators():
     TITLE = (By.CSS_SELECTOR, "[title='Simbirsoft Тестовое задание']")
     BUTTON_WRITE_MAIL = (By.CSS_SELECTOR, ".mail-ComposeButton-Text")
-    FIELD_ADDRESS = (By.CSS_SELECTOR, ".MultipleAddressesDesktop-Field")
+    FIELD_ADDRESS = (By.CSS_SELECTOR, "div.MultipleAddressesDesktop-Field")
+    FIELD_TEXT = (By.CSS_SELECTOR, ".cke_wysiwyg_div")
 
 
 
