@@ -7,6 +7,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from .locators import BasePageLocators, LoginPageLocators, MailPageLocators
 
 email = "Simbirsoft2022"
+full_email = "Simbirsoft2022@yandex.ru"
 password = "Simbirsoft-2022"
 
 
@@ -37,7 +38,7 @@ class BasePage():
         btn = self.browser.find_element(*LoginPageLocators.BUTTON_INPUT_EMAIL)
         btn.click()
         # вводим пароль, нужна пауза, чтобы успеть ввести пароль:
-        time.sleep(2)
+        time.sleep(1)
         btn = self.browser.find_element(*LoginPageLocators.INPUT_PASSWORD1)
         btn.send_keys(password)
         # жмем Войти:
@@ -47,21 +48,27 @@ class BasePage():
         # btn = self.browser.find_element(*LoginPageLocators.BUTTON_NOT_NOW)
         # btn.click()
 
-    def find_count_mail(self, a, count):
+    def find_count_mail(self, a, ):
         # нужна пауза чтобы подгрузилась страница и подсчитались письма:
-        time.sleep(3)
+        time.sleep(2)
         # ищем список элементов по теме письма (локатор TITLE):
         a = self.browser.find_elements(*MailPageLocators.TITLE)
         count = len(a)
+        print(count)
 
     def write_mail(self):
-        # жмем НАПИСАТЬ:
-        time.sleep(3)
+        # count = 7
+        # жмем кнопку НАПИСАТЬ:
+        time.sleep(2)
         btn = self.browser.find_element(*MailPageLocators.BUTTON_WRITE_MAIL)
         btn.click()
-        time.sleep(5)
-        btn = self.browser.find_element(*MailPageLocators.FIELD_ADDRESS)
-        btn.send_keys(email)
+        time.sleep(3)
+        btn = self.browser.find_element(*MailPageLocators.FIELD_TEXT)
+        btn.send_keys(count)
+        # btn = self.browser.find_elements(*MailPageLocators.FIELD_ADDRESS)[1]
+        # # btn.click()
+        # btn.send_keys(full_email)
+        time.sleep(2)
 
 
 
@@ -120,3 +127,4 @@ class BasePage():
     def should_be_login_link(self):
         """ Проверка, что подстрока "login" есть в текущем url браузера """
         assert self.is_element_present(*BasePageLocators.LOGIN_LINK), "LOGIN LINK IS NOT PRESENTED"
+
