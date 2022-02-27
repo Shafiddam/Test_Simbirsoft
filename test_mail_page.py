@@ -1,5 +1,3 @@
-import time
-
 from .pages.base_page import BasePage
 import pytest
 
@@ -31,38 +29,4 @@ def test_mail(browser):
     page = BasePage(browser, link)
     page.open()
     page.go_to_login_mail_page()
-    # time.sleep(3)
-    page.find_count_mail(a=None, count=None)
-    page.write_mail()
-
-
-
-
-
-# class TestUserAddToBasketFromProductPage():
-#     @pytest.fixture(scope="function", autouse=True)
-#     def setup(self, browser, email=None, password=None):
-#         """"
-#         открыть страницу регистрации;
-#         зарегистрировать нового пользователя;
-#         проверить, что пользователь залогинен.
-#         """
-#         login_link = 'http://selenium1py.pythonanywhere.com/accounts/login/'
-#         page = LoginPage(browser, login_link)
-#         page.open()
-#         page.register_new_user(email, password)
-#         page.should_be_authorized_user()
-#
-#     def test_user_can_add_product_to_basket(self, browser):
-#         """
-#         Проверка нажатия на кнопку ADD_TO_BASKET_BUTTON
-#         Ожидаемый результат:
-#         1) Сообщение о том, что товар добавлен в корзину.
-#         Название товара в сообщении должно совпадать с тем товаром, который вы действительно добавили.
-#         2) Сообщение со стоимостью корзины. Стоимость корзины совпадает с ценой товара.
-#         """
-#         product_link = 'http://selenium1py.pythonanywhere.com/en-gb/catalogue/coders-at-work_207'
-#         page = ProductPage(browser, product_link)
-#         page.open()
-#         page.add_product_to_basket()
-#         page.should_be_msg_about_adding()
+    page.find_count_mail_and_write_mail()
