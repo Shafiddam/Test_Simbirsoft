@@ -44,40 +44,27 @@ class BasePage():
         # жмем Войти:
         btn = self.browser.find_element(*LoginPageLocators.BUTTON_INPUT_EMAIL)
         btn.click()
-        # окно привязки телефона, жмем НЕ СЕЙЧАС
-        # btn = self.browser.find_element(*LoginPageLocators.BUTTON_NOT_NOW)
-        # btn.click()
 
-    def find_count_mail(self, a, ):
+    def find_count_mail_and_write_mail(self):
         # нужна пауза чтобы подгрузилась страница и подсчитались письма:
-        time.sleep(2)
+        time.sleep(4)
         # ищем список элементов по теме письма (локатор TITLE):
         a = self.browser.find_elements(*MailPageLocators.TITLE)
         count = len(a)
-        print(count)
-
-    def write_mail(self):
-        # count = 7
-        # жмем кнопку НАПИСАТЬ:
-        time.sleep(2)
         btn = self.browser.find_element(*MailPageLocators.BUTTON_WRITE_MAIL)
         btn.click()
         time.sleep(3)
-        btn = self.browser.find_element(*MailPageLocators.FIELD_TEXT)
-        btn.send_keys(count)
-        # btn = self.browser.find_elements(*MailPageLocators.FIELD_ADDRESS)[1]
-        # # btn.click()
-        # btn.send_keys(full_email)
+        btn = self.browser.find_element(*MailPageLocators.FIELD_ADDRESS)
+        btn.send_keys(full_email)
+        btn = self.browser.find_element(*MailPageLocators.FIELD_SUBJECT_TEXT)
+        btn.send_keys("Simbirsoft Тестовое задание. Шафиков")
         time.sleep(2)
-
-
-
-
-
-
-
-
-
+        btn = self.browser.find_element(*MailPageLocators.FIELD_TEXTBOX_CONTENT_EMAIL)
+        btn.send_keys(f"Количество найденных писем: ", count)
+        time.sleep(3)
+        btn = self.browser.find_element(*MailPageLocators.BUTTON_SEND_MAIL)
+        btn.click()
+        time.sleep(3)
 
     def is_element_present(self, how, what):
         """
@@ -127,4 +114,3 @@ class BasePage():
     def should_be_login_link(self):
         """ Проверка, что подстрока "login" есть в текущем url браузера """
         assert self.is_element_present(*BasePageLocators.LOGIN_LINK), "LOGIN LINK IS NOT PRESENTED"
-
